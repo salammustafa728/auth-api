@@ -14,6 +14,13 @@ In this repo we implement Role Based Access Control (RBAC) using an Access Contr
 * [heroku](https://salam-auth-api-1.herokuapp.com/)
 
 
+## Routes 
+
+* /api/v2/clothesR
+* /api/v1/img
+* /signin
+* /signup
+
 ### UML diagram 
 
 ![uml](./images/uml-auth-api.png)

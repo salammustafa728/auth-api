@@ -43,7 +43,8 @@ User.authenticateBasic = async function (username,password) {
         const user = await this.findOne({where:{username:username}});
         const valid = await bcrypt.compare(password,user.password);
         if(valid) {
-            let newToken = jwt.sign({username:user.username},SECRET);
+            // let newToken = jwt.sign({username:user.username},SECRET);
+            let newToken = jwt.sign({exp:Math.floor(Date.now()/1000)+900,username:user.username},SECRET);
             user.token = newToken;
             return user;
         } else {
