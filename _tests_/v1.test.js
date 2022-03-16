@@ -1,5 +1,6 @@
 'use strict';
 
+process.env.SECRET = "test"; 
 const server = require('../src/server');
 const supertest = require('supertest');
 const request = supertest(server.app);
