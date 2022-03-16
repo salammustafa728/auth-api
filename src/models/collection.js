@@ -7,7 +7,6 @@ class collection {
     async createRecord(obj) {
         console.log('this model is', this.model)
         try {
-
             return await this.model.create(obj);
         } catch (e) {
             console.error('error in creating a new record for model: ', this.model.name);

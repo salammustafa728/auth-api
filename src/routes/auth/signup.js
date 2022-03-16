@@ -12,9 +12,9 @@ async function signupFunc(req,res){
     console.log(`${userData.username} and ${userData.password}`);
     try{
         let hasedPass = await bcrypt.hash(userData.password,5);
-        console.log('after hashing>>>',hasedPass);
+        // console.log('after hashing>>>',hasedPass);
         userData.password=hasedPass;
-        console.log('userDataddddddd ',userData);
+        // console.log('userDataddddddd ',userData);
         const newUser = await User.create(userData);
         res.status(201).json(newUser);
     }catch (error){

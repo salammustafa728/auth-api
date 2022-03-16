@@ -8,7 +8,7 @@ const acl = require('../../middleware/acl');
 const {clothes, User} = require('../../models/index')
 
 imgRouter.param("model",(req,res,next)=>{
-    // console.log("1111",req.params.model);
+    console.log('tttttttt',req.params.model);
     if (models[req.params.model]) {
         req.model = models[req.params.model];
         next()
@@ -16,7 +16,6 @@ imgRouter.param("model",(req,res,next)=>{
         next('invalid input')
     }
 })
-
 
 imgRouter.post('/:model',bearer(User),acl('create'),async(req,res)=>{
     let createdData = await req.model.createRecord(req.body);
@@ -45,6 +44,6 @@ imgRouter.put('/:model/:id',bearer(User),acl('update'),async(req,res)=>{
 imgRouter.delete('/:model/:id',bearer(User),acl('delete'),async(req,res)=>{
     let { id } = req.params;
     await req.model.removeRecord(id);
-    res.status(200).send("removed Data");
+    res.status(204).send("removed Data");
 })
 module.exports = imgRouter

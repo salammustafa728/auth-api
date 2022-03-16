@@ -22,16 +22,16 @@ afterAll( async () =>{
 Object.keys(Users).forEach(element => {
     describe('testing clothes model for v2 route',()=>{
    
-        it ('post new sport', async () => {
+        it ('post new clothes', async () => {
             let Auth = await request.post('/signup').send(Users[element]);
             let userToken = Auth.body.token;
             const response = await request.post('/api/v2/clothesR').send({
-                chlothes: "test",
+                clothes: "test",
                 clothesInfo : "test"
             }).set("Authorization", `Bearer ${userToken}`);
             id = response.body.id
-            if (element === 'writer' || element === 'editor'||element === 'admin') {
-                expect(response.status).toBe(500);
+            if (element.role === 'writer' || element.role === 'editor'||element.role === 'admin') {
+                expect(response.status).toBe(201);
             } else {
                 expect(response.status).toBe(500);
             } 
@@ -70,7 +70,7 @@ Object.keys(Users).forEach(element => {
         const response = await request.delete(`/api/v2/clothesR/${id}`).set("Authorization", `Bearer ${userToken}`);
 
           if (Users[element].role === 'admin') {
-            expect(response.status).toBe(200);
+            expect(response.status).toBe(204);
         } else {
             expect(response.status).toBe(500);
         }
