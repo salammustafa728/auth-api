@@ -1,7 +1,7 @@
 'use strict';
 
 const chlothes = (sequelize, DataTypes) => sequelize.define('chlothes', {
-    chlothes: {
+    clothes: {
         type: DataTypes.STRING,
         allowNull: false
     },
